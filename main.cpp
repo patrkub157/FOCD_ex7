@@ -82,7 +82,13 @@ int main()
         {
             ////////////////////////////////////
             tab[result] = check_gate(gate, tab[a], tab[b]);
-            std::cout << gate << "\t" << a << ": " << tab[a] << "\t" << b << ": " << tab[b] << "\t" << result << ": " << tab[result] << "\n";
+            if (tab[result] == 404)
+            {
+                std::cout << "ERROR! GATE " << gate << " NOT FOUND!";
+                return 0;
+            }
+
+            std::cout << gate << "\t \t" << a << ": " << tab[a] << "\t" << b << ": " << tab[b] << "\t" << result << ": " << tab[result] << "\n";
         };
     }
 }
