@@ -1,5 +1,6 @@
 .vscode
 *.exe
 *.o
-*.txt
+plan.txt
+output.test.txt
 README_PL.md
