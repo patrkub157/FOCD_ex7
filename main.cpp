@@ -50,22 +50,20 @@ int check_gate(std::string gate, int a, int b)
     //and, nand, or, nor, xor,
 };
 
-int main()
+int calc()
 {
-
     std::ifstream f("input.txt");
     std::string line;
 
-    while (std::getline(f, line))
+    while (std::getline(f, line)) //while functions one for each line in .txt file
     {
-        std::string gate;
-        int a, b, result, end;
-        int tab[100];
-        char dash; // to absorb the '-' separator
+        std::string gate; // gate read from file
+        int a, b, result, end, endresult;
+        int tab[100]; // a table for 0,1 numbers
 
         std::istringstream ss(line);
 
-        ss >> gate >> a >> b >> result;
+        ss >> gate >> a >> b >> result; //read values from file
 
         if (gate == "IN:")
         {
@@ -80,15 +78,26 @@ int main()
         }
         else
         {
-            ////////////////////////////////////
-            tab[result] = check_gate(gate, tab[a], tab[b]);
-            if (tab[result] == 404)
+
+            tab[result] = check_gate(gate, tab[a], tab[b]); // function for finding the right gate and get the result
+            if (tab[result] == 404)                         //throw an error if gate does not exist
             {
                 std::cout << "ERROR! GATE " << gate << " NOT FOUND!";
-                return 0;
+                return 404;
             }
 
-            std::cout << gate << "\t \t" << a << ": " << tab[a] << "\t" << b << ": " << tab[b] << "\t" << result << ": " << tab[result] << "\n";
+            std::cout << gate << "\t \t" << a << ": " << tab[a] << "\t" << b << ": " << tab[b] << "\t" << result << ": " << tab[result] << "\n"; //line for checking if program works fine
+
+            if (end == result) //end program if we know the result
+            {
+                return tab[result];
+            }
         };
-    }
+    };
+    return 404;
+};
+
+int main()
+{
+    return calc();
 }
