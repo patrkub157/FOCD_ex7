@@ -1,11 +1,7 @@
 #include <iostream>
+#include <string>
 #include <fstream>
 #include <sstream>
-#include <string>
-#include <unistd.h>
-#include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 int check_gate(std::string gate, int a, int b) //function for chceking and calculating gates
 {
