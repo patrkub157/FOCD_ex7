@@ -2,8 +2,12 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <unistd.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int check_gate(std::string gate, int a, int b)
+int check_gate(std::string gate, int a, int b) //function for chceking and calculating gates
 {
     if (gate == "AND")
     {
@@ -49,9 +53,9 @@ int check_gate(std::string gate, int a, int b)
         return 404;
 };
 
-int calc(int a_value, int b_value)
+int calc(int a_value, int b_value, std::string circuit)
 {
-    std::ifstream f("input.txt");
+    std::ifstream f(circuit + ".txt");
     std::string line;
 
     while (std::getline(f, line)) //while functions one for each line in .txt file
@@ -59,12 +63,6 @@ int calc(int a_value, int b_value)
         std::string gate; // gate read from file
         int a, b, result, end, endresult;
         int tab[100]; // a table for 0,1 numbers
-
-        struct str
-        { // Declare a local structure
-            int end;
-            std::string endresult;
-        };
 
         std::istringstream ss(line);
 
@@ -102,13 +100,14 @@ int calc(int a_value, int b_value)
     return 404;
 };
 
-int main()
+int write(std::string circuit, std::string inputs, std::string output)
 {
-    std::ifstream f("input_states.txt");
+
+    std::ifstream f(inputs + ".txt");
     std::string line;
 
     std::ofstream myfile;
-    myfile.open("output.txt");
+    myfile.open(output + ".txt");
 
     while (std::getline(f, line))
     {
@@ -120,15 +119,48 @@ int main()
 
         ss >> a >> colon >> a_value >> b >> colon >> b_value; //line for reading values from structures file
 
-        //std::cout << a << colon << a_value << "\t" << b << colon << b_value << "\n"; // For cout print
+        std::cout << a << colon << a_value << "\t" << b << colon << b_value << "\n"; // For cout print
 
-        if (calc(a_value, b_value) == 404)
+        if (calc(a_value, b_value, circuit) == 404)
             return 0;
 
         myfile << "IN: " << a << colon << a_value << "\t" << b << colon << b_value << "\t"
-               << "OUT: " << calc(a_value, b_value) //return value
+               << "OUT: " << calc(a_value, b_value, circuit) //return value
                << "\n";
     };
     myfile.close();
+    return 0;
+}
+
+int main()
+{
+    std::string circuit, inputs, output;
+    std::cout << "Write the name of the input file with circuit (.txt): ";
+    std::cin >> circuit;
+    std::cout << "\n";
+    std::cout << "Write the name of the input file with inputs (.txt): ";
+    std::cin >> inputs;
+    std::cout << "\n";
+    std::cout << "Write the name of the otput file (.txt): ";
+    std::cin >> output;
+    std::cout << "\n";
+
+    std::ifstream f(circuit + ".txt");
+    std::string line;
+    if (!std::getline(f, line))
+    {
+        std::cout << "Empty or not existing circuit file " + circuit + ".txt";
+        return 0;
+    }
+    std::ifstream sf(inputs + ".txt");
+    std::string sline;
+    if (!std::getline(sf, sline))
+    {
+        std::cout << "Empty or not existing inputs file " + inputs + ".txt";
+        return 0;
+    }
+
+    write(circuit, inputs, output);
+    std::cout << "File created :) ";
     return 0;
 }
