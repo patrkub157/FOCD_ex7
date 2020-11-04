@@ -1,8 +1,5 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include "write.h"
+
+#include "main.h"
 
 int main()
 {

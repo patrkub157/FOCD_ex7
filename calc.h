@@ -1,5 +1,8 @@
 
 #pragma once
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include "check_gate.h"
 
 int calc(int a_value, int b_value, std::string circuit)
