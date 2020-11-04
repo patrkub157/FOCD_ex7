@@ -6,6 +6,10 @@
 #include <sstream>
 #include "calc.h"
 
+//
+// Function for reading from input states and writing values into a output file
+//
+
 int write(std::string circuit, std::string inputs, std::string output)
 {
 
@@ -27,13 +31,16 @@ int write(std::string circuit, std::string inputs, std::string output)
 
         std::cout << a << colon << a_value << "\t" << b << colon << b_value << "\n"; // For cout print
 
-        if (calc(a_value, b_value, circuit) == 404)
+        if (calc(a_value, b_value, circuit) == 404) // write an error if calc() returns 404
+        {
+            std::cout << "There was an error in the circuit txt file check if you have IN OUT values and correct numbers for gates ";
             return 0;
+        }
 
         myfile << "IN: " << a << colon << a_value << "\t" << b << colon << b_value << "\t"
-               << "OUT: " << calc(a_value, b_value, circuit) //return value
+               << "OUT: " << calc(a_value, b_value, circuit) //return outcome from calc()
                << "\n";
     };
-    myfile.close();
+    myfile.close(); //close the output file
     return 0;
 }

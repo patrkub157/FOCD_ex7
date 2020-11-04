@@ -1,4 +1,8 @@
 #pragma once
+
+//
+// file with all libraries and header files
+//
 #include <iostream>
 #include <string>
 #include <fstream>

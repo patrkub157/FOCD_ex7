@@ -1,7 +1,9 @@
 
 #pragma once
-
-int check_gate(std::string gate, int a, int b) //function for chceking and calculating gates
+//
+//function for chceking existing gates and calculating them using if else method
+//
+int check_gate(std::string gate, int a, int b)
 {
     if (gate == "AND")
     {

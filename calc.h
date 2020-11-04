@@ -10,11 +10,11 @@ int calc(int a_value, int b_value, std::string circuit)
     std::ifstream f(circuit + ".txt");
     std::string line;
 
-    while (std::getline(f, line)) //while functions one for each line in .txt file
+    while (std::getline(f, line)) // lopp (while function) one for each line in .txt file
     {
         std::string gate; // gate read from file
         int a, b, result, end, endresult;
-        int tab[100]; // a table for 0,1 numbers
+        int tab[100]; // a table of 0,1 numbers for output from gates
 
         std::istringstream ss(line);
 
@@ -49,5 +49,5 @@ int calc(int a_value, int b_value, std::string circuit)
             }
         };
     };
-    return 404;
+    return 404; // if there is no result return an error
 };
