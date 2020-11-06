@@ -5,12 +5,18 @@
 #include <sstream>
 #include "check_gate.h"
 
+//
+// In: a_value, b_value - starting values from inputs file ; circuit - name of the circuit file
+// Function for reading values from circuit file and divide into gate lines and IN OUT lines
+// Out: circuit final result
+//
+
 int calc(int a_value, int b_value, std::string circuit)
 {
-    std::ifstream f(circuit + ".txt");
+    std::ifstream f(circuit + ".txt"); //open and read from the circuit file
     std::string line;
 
-    while (std::getline(f, line)) // lopp (while function) one for each line in .txt file
+    while (std::getline(f, line)) // loop (while function) one for each line in .txt file
     {
         std::string gate; // gate read from file
         int a, b, result, end, endresult;
@@ -18,7 +24,7 @@ int calc(int a_value, int b_value, std::string circuit)
 
         std::istringstream ss(line);
 
-        ss >> gate >> a >> b >> result; //read values from file
+        ss >> gate >> a >> b >> result; //read values from file > gate name|value a|value b|result value
 
         if (gate == "IN:")
         {

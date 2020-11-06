@@ -7,7 +7,11 @@
 #include "calc.h"
 
 //
+//
+// in: all files names from flags
 // Function for reading from input states and writing values into a output file
+// out: write into output file
+//
 //
 
 int write(std::string circuit, std::string inputs, std::string output)

@@ -1,8 +1,12 @@
 
 #pragma once
+
 //
-//function for chceking existing gates and calculating them using if else method
+// in: gate name and two gate values
+// function for chceking existing gates and calculating them using if else method
+// out: outcome
 //
+
 int check_gate(std::string gate, int a, int b)
 {
     if (gate == "AND")
